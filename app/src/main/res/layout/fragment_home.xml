@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment"
+    android:background="@color/colorPrimary"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/show_main_info"/>
+            <!--    <TextView-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:text="Home Fracment"-->
+            <!--        android:textSize="20dp"-->
+            <!--        android:layout_gravity="center"/>-->
+            <include layout="@layout/layout_shape_patrimon"
+                android:id="@+id/xml_payment"/>
+
+            <include
+                android:id="@+id/xml_list_jar"
+                layout="@layout/list_jar_layout" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

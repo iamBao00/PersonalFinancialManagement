@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MoneyManager</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tendangnhap">Tên đăng nhập</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="nhaplaimatkhau">Nhập lại mật khẩu</string>
+</resources>

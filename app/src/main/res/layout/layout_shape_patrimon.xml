@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_patrimony"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_card"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/tvPaymentIcon1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="1.900.000 đ"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tvPaymentMoney1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tài sản"
+            android:textColor="@color/white"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="80dp"
+            android:textSize="18dp"
+            android:id="@+id/tvNamePayment1"/>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_patrimony"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/subtract_card"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/tvPaymentIcon2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="0 đ"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tvPaymentMoney2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khoản nợ"
+            android:textColor="@color/white"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="80dp"
+            android:textSize="18dp"
+            android:id="@+id/tvNamePayment2"/>
+
+    </FrameLayout>
+
+    <!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/shape_patrimony"-->
+<!--        android:layout_gravity="end"/>-->
+</FrameLayout>

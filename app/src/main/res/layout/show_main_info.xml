@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <TextView
+        android:background="@drawable/shapegradient"
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_percent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="75dp"
+        android:text="100%"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tài sản ròng"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:id="@+id/tvTitleMainInfo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.000.000.000 đ"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:id="@+id/tvMoneyMainInfo"/>
+    </LinearLayout>
+
+</FrameLayout>

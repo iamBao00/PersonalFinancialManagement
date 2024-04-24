@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh sách hũ"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jar_list_background"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_background"
+                android:layout_margin="20dp"
+                app:tint="@color/purpleJar" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thiết yếu"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả dụng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.200.000 đ"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30%"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="30"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:progressTint="@color/purpleJar"
+                android:progressBackgroundTint="@color/colorProgress"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_background"
+                android:layout_margin="20dp"
+                app:tint="@color/blueJar" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giáo dục"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả dụng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.200.000 đ"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50%"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="50"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:progressTint="@color/blueJar"
+                android:progressBackgroundTint="@color/colorProgress"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_background"
+                android:layout_margin="20dp"
+                app:tint="@color/yellowJar" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thiết yếu"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả dụng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.200.000 đ"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100%"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="100"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:progressTint="@color/yellowJar"
+                android:progressBackgroundTint="@color/colorProgress"></ProgressBar>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_background"
+                android:layout_margin="20dp"
+                app:tint="@color/greenJar"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thiết yếu"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả dụng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.200.000 đ"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70%"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="70"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:progressTint="@color/greenJar"
+                android:progressBackgroundTint="@color/colorProgress"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_background"
+                android:layout_margin="20dp"
+                app:tint="@color/cyanJar"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thiết yếu"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả dụng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.200.000 đ"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20%"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="20"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:progressTint="@color/cyanJar"
+                android:progressBackgroundTint="@color/colorProgress"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_background"
+                android:layout_margin="20dp"
+                app:tint="@color/pinkJar"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jar_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thiết yếu"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khả dụng"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.200.000 đ"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100%"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:progress="100"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:progressTint="@color/pinkJar"
+                android:progressBackgroundTint="@color/colorProgress"/>
+        </FrameLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
