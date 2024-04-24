@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context=".AddFragment">
+    tools:context=".AddIncomeActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,8 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -36,10 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Nhập số Tiền"
-            android:inputType="numberDecimal"
             android:ems="10"
-            />
+            android:hint="Nhập số Tiền"
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
 
@@ -120,4 +118,5 @@
                 layout="@layout/layout_modify_percent" />
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

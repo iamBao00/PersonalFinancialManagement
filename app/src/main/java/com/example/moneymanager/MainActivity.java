@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.moneymanager.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    private int idCurrentLoginUser = 3;
+
     ActivityMainBinding bingding;
     Toolbar tooltopbar;
 
@@ -29,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
                     replaceFracment(new HomeFragment());
                     break;
                 case R.id.addIcon:
-                    replaceFracment(new AddFragment());
+                    Intent myIntent = new Intent(MainActivity.this, AddIncomeActivity.class);
+                    myIntent.putExtra("userId",idCurrentLoginUser);
+                    startActivity(myIntent);
                     break;
                 case R.id.persionIcon:
                     replaceFracment(new PersionFragment());

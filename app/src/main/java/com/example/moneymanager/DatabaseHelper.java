@@ -5,7 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import androidx.annotation.Nullable;
+import android.util.Log;
+
+import com.example.moneymanager.Model.Income;
+import com.example.moneymanager.Model.IncomeDetail;
+import com.example.moneymanager.Model.JarDetail;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -53,12 +57,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "    date DATE\n" +
                 ");";
         String createDetailIncome = "CREATE TABLE detail_income (\n" +
-                "    id_jar INTEGER,\n" +
+                "    id_jar_detail INTEGER,\n" +
                 "    id_income INTEGER,\n" +
                 "    co_cau TEXT,\n" +
                 "    detail_money MONEY,\n" +
-                "    PRIMARY KEY (id_jar, id_income),\n" +
-                "    FOREIGN KEY (id_jar) REFERENCES jar (id_jar),\n" +
+                "    PRIMARY KEY (id_jar_detail, id_income),\n" +
+                "    FOREIGN KEY (id_jar_detail) REFERENCES jar_detail (id_jar_detail),\n" +
                 "    FOREIGN KEY (id_income) REFERENCES income (id_income)\n" +
                 ");";
 
@@ -94,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Boolean insertData(String email, String password, String fullname, String username){
+    public long insertData(String email, String password, String fullname, String username){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("email", email);
@@ -104,10 +108,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = MyDatabase.insert("user", null, contentValues);
 
         if (result == -1) {
-            return false;
+            return result;
         } else {
-            return true;
+
+            for(int i = 1; i<=6; i++){
+                ContentValues contentValues1 = new ContentValues();
+                contentValues1.put("id_user",result);
+                contentValues1.put("id_jar",i);
+                contentValues1.put("money",0);
+                MyDatabase.insert("jar_detail",null,contentValues1);
+            }
+            return result;
         }
+    }
+
+    public long addIncome(Income income){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("total_money", income.getTotal_money());
+        values.put("description", income.getDescription());
+        values.put("date", income.getDate());
+
+        long id = db.insert("income", null, values);
+        db.close(); // Closing database connection
+        return id;
+    }
+
+    public void addDetailMoney(IncomeDetail incomeDetail){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id_jar", incomeDetail.getIdJarDetail());
+        values.put("id_income", incomeDetail.getIdIncome());
+        values.put("co_cau", incomeDetail.getCo_cau());
+        values.put("detail_money", incomeDetail.getDetailMoney());
+
+        db.insert("detail_income", null, values);
+        db.close(); // Closing database connection
+    }
+
+    public void updateJarDetail(JarDetail jarDetail){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("money", jarDetail.getMoney());
+
+        String selection = "id_jar = ? AND id_user = ?";
+        String[] selectionArgs = {String.valueOf(jarDetail.getIdJar()), String.valueOf(jarDetail.getIdUser())};
+
+        int rowsAffected = db.update("jar_detail", values, selection, selectionArgs);
+
+        // Kiểm tra xem có bao nhiêu hàng đã được cập nhật
+        if (rowsAffected > 0) {
+            Log.d("Database", "Updated " + rowsAffected + " rows in detail_income table");
+        } else {
+            Log.d("Database", "No rows updated in detail_income table");
+        }
+        db.close(); // Đóng kết nối cơ sở dữ liệu
     }
 
     public Boolean checkEmail(String email){
