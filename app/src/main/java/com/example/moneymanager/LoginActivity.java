@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = getSharedPreferences("getIdUser", MODE_PRIVATE).edit();
                         editor.putInt("idUserCurrent", idUser);
                         editor.apply();
-                        Toast.makeText(LoginActivity.this, "id " + idUser, Toast.LENGTH_SHORT).show();
                         //////////////////////////////////
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                        intent.putExtra("idUserCurrent", idUser);

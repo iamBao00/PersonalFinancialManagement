@@ -3,10 +3,13 @@ package com.example.moneymanager;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneymanager.Model.JarDetail;
-import com.example.moneymanager.Model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment {
 
 
     TextView tvTongThuNhap, tvTongChiTieu, tvSoDuHu1, tvSoDuHu2, tvSoDuHu3, tvSoDuHu4, tvSoDuHu5, tvSoDuHu6, tvSoDu;
+    View xml_payment;
     long tongThuNhap, tongChiTieu = 0;
 
 
@@ -112,13 +115,38 @@ public class HomeFragment extends Fragment {
 
         SharedPreferences prefs = context.getSharedPreferences("getIdUser", MODE_PRIVATE);
         idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
-        Toast.makeText(context, "idhome " + idCurrentLoginUser, Toast.LENGTH_SHORT).show();
+        xml_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFracment(new PersionFragment());
+            }
+        });
 
-
+        setEvent();
 
         return rootView;
     }
 
+    private void replaceFracment(Fragment fragment)
+    {
+
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void setEvent() {
+//        frKhoanNo.(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Context context = getActivity();
+//                    Intent intent = new Intent(context, SpendingActivity.class);
+//                    startActivity(intent);
+//                }
+//            });
+
+    }
 
 
     private void setControl(View rootView) {
@@ -131,5 +159,6 @@ public class HomeFragment extends Fragment {
         tvSoDuHu5 =  rootView.findViewById(R.id.tvSoDuHu5);
         tvSoDuHu6 =  rootView.findViewById(R.id.tvSoDuHu6);
         tvSoDu = rootView.findViewById(R.id.tvSoDu);
+        xml_payment = rootView.findViewById(R.id.xml_payment);
     }
 }
