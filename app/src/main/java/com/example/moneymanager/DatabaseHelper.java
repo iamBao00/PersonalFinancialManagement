@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.moneymanager.Model.Income;
 import com.example.moneymanager.Model.IncomeDetail;
 import com.example.moneymanager.Model.JarDetail;
+import com.example.moneymanager.Model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -98,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertData(String email, String password, String fullname, String username){
+    public long insertData(String fullname ,String email, String username,String password){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("email", email);
@@ -300,5 +301,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 //        cursor.close();
         return idUser;
+    }
+
+    public User getUserInfo(int idUser)
+    {
+        User u = new User();
+        SQLiteDatabase data = this.getReadableDatabase();
+        Cursor cursor = null    ;
+        cursor = data.rawQuery("SELECT* FROM user WHERE id_user = ?", new String[]{String.valueOf(idUser)});
+
+        if(cursor!= null && cursor.moveToFirst())
+        {
+            String fullname,email, username, password;
+            fullname =  cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+            email =  cursor.getString(cursor.getColumnIndexOrThrow("email"));
+            username =  cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            password =  cursor.getString(cursor.getColumnIndexOrThrow("password"));
+            u.setFullname(fullname);
+            u.setEmail(email);
+            u.setUsername(username);
+            u.setPassword(password);
+        }
+        cursor.close();
+
+        return u;
     }
 }

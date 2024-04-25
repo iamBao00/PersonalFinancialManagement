@@ -37,6 +37,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Nhập số Tiền"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -62,6 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint=""
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:ems="10"
             android:inputType="text" />
 
@@ -90,6 +94,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Nhập mô tả"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:inputType="text" />
 
     </LinearLayout>

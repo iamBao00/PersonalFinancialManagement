@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneymanager.Model.JarDetail;
+import com.example.moneymanager.Model.User;
 import com.example.moneymanager.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
         bingding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(R.layout.activity_main);
         setContentView(bingding.getRoot());
-
+        ////////////////////////////////////////////////////
         SharedPreferences prefs = getSharedPreferences("getIdUser", MODE_PRIVATE);
         idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
         Toast.makeText(this, "idUser" + idCurrentLoginUser, Toast.LENGTH_SHORT).show();
+        ////////////////////////////////////////////////////
+
+
         replaceFracment(new HomeFragment());
 //        bingding.bottomNavagationView.setBackground(null);
         bingding.bottomNavagationView.setOnItemSelectedListener(item -> {
@@ -71,7 +75,16 @@ public class MainActivity extends AppCompatActivity {
     private void setEvent() {
 
         setSupportActionBar(tooltopbar);
+        //set name toolbar
+        setNameToolBar();
 
+    }
+
+    private void setNameToolBar() {
+        User user = new User();
+        DatabaseHelper data = new DatabaseHelper(MainActivity.this);
+        user = data.getUserInfo(idCurrentLoginUser);
+        tooltopbar.setSubtitle(user.getFullname());
     }
 
     private void setControl() {

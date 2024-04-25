@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
                     if(password.equals(confirmPassword)){
                         Boolean checkUserEmail = db.checkEmail(email);
                         if(checkUserEmail == false){
-                            long insert = db.insertData(username, password, email, fullName);
+                            long insert = db.insertData( fullName,email,username, password);
                             System.out.println(insert);
                             if(insert > 0){
                                 Toast.makeText(SignupActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
