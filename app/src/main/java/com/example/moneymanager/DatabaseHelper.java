@@ -285,4 +285,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public int getIDUser(String username)
+    {
+        int idUser = -1 ; // default idUser = 1 when check login false
+        SQLiteDatabase data = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        cursor = data.rawQuery("SELECT id_user FROM user WHERE username = ?", new String[] {username});
+        if(cursor!= null && cursor.moveToFirst()) {
+            idUser = cursor.getInt(0);
+        }
+
+
+//        cursor.close();
+        return idUser;
+    }
 }

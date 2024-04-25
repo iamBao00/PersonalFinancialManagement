@@ -1,6 +1,9 @@
 package com.example.moneymanager;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moneymanager.Model.JarDetail;
 
@@ -30,7 +34,9 @@ public class HomeFragment extends Fragment {
     Context context = getActivity();
     DatabaseHelper db;
 
-    int idCurrentLoginUser = 1;
+    int idCurrentLoginUser =1 ;
+
+
     TextView tvTongThuNhap, tvTongChiTieu, tvSoDuHu1, tvSoDuHu2, tvSoDuHu3, tvSoDuHu4, tvSoDuHu5, tvSoDuHu6, tvSoDu;
     long tongThuNhap, tongChiTieu = 0;
 
@@ -88,6 +94,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setControl() {
+
     }
 
     @Override
@@ -104,8 +111,11 @@ public class HomeFragment extends Fragment {
         tvSoDuHu5 =  rootView.findViewById(R.id.tvSoDuHu5);
         tvSoDuHu6 =  rootView.findViewById(R.id.tvSoDuHu6);
         tvSoDu = rootView.findViewById(R.id.tvSoDu);
-
         Context context = getActivity();
+        SharedPreferences prefs = context.getSharedPreferences("getIdUser", MODE_PRIVATE);
+        idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
+        Toast.makeText(context, "idhome " + idCurrentLoginUser, Toast.LENGTH_SHORT).show();
+
         if (context != null) {
             // Khởi tạo đối tượng DatabaseHelper với Context đã lấy được
             db = new DatabaseHelper(context);

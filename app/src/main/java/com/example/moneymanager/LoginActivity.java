@@ -1,6 +1,7 @@
 package com.example.moneymanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -33,7 +34,16 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean checkUserPass = db.checkUsernamePassword(username, password);
                     if(checkUserPass == true){
                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        //////////////////////////////////////////
+                        //getIDUser
+                        int idUser = db.getIDUser(username);
+                        SharedPreferences.Editor editor = getSharedPreferences("getIdUser", MODE_PRIVATE).edit();
+                        editor.putInt("idUserCurrent", idUser);
+                        editor.apply();
+                        Toast.makeText(LoginActivity.this, "id " + idUser, Toast.LENGTH_SHORT).show();
+                        //////////////////////////////////
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        intent.putExtra("idUserCurrent", idUser);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LoginActivity.this, "Thông tin không chính xác", Toast.LENGTH_SHORT).show();

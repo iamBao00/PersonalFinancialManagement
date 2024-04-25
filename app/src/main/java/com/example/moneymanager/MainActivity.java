@@ -7,14 +7,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moneymanager.Model.JarDetail;
 import com.example.moneymanager.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private int idCurrentLoginUser = 1;
+    int idCurrentLoginUser;
+
+
+
+
+
 
     ActivityMainBinding bingding;
     Toolbar tooltopbar;
@@ -26,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         bingding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(R.layout.activity_main);
         setContentView(bingding.getRoot());
+
+        SharedPreferences prefs = getSharedPreferences("getIdUser", MODE_PRIVATE);
+        idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
+        Toast.makeText(this, "idUser" + idCurrentLoginUser, Toast.LENGTH_SHORT).show();
         replaceFracment(new HomeFragment());
 //        bingding.bottomNavagationView.setBackground(null);
         bingding.bottomNavagationView.setOnItemSelectedListener(item -> {
