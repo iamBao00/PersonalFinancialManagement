@@ -110,7 +110,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (result == -1) {
             return result;
         } else {
-
             for(int i = 1; i<=6; i++){
                 ContentValues contentValues1 = new ContentValues();
                 contentValues1.put("id_user",result);
@@ -120,6 +119,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
             return result;
         }
+    }
+    public JarDetail getMoneyInJarDetail(JarDetail jarDetail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                "id_jar_detail",
+                "id_user",
+                "id_jar",
+                "money",
+                "date_update"
+        };
+
+        String selection = "id_jar = ? AND id_user = ?";
+        String[] selectionArgs = {String.valueOf(jarDetail.getIdJar()), String.valueOf(jarDetail.getIdUser())};
+
+        Cursor cursor = db.query(
+                "jar_detail",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        JarDetail jarDetail2 = new JarDetail();
+        // Duyệt qua các hàng của kết quả và thêm chúng vào danh sách
+        if (cursor != null && cursor.moveToFirst()) {
+            int idJarDetail = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar_detail"));
+            int idUser = cursor.getInt(cursor.getColumnIndexOrThrow("id_user"));
+            int idJar = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar"));
+            long money = cursor.getLong(cursor.getColumnIndexOrThrow("money"));
+            String date_update = cursor.getString(cursor.getColumnIndexOrThrow("date_update"));
+            jarDetail2 =  new JarDetail(idJarDetail, idUser,idJar, money,date_update);
+        }
+
+        // Đóng con trỏ và kết nối cơ sở dữ liệu
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return jarDetail2;
     }
 
     public long addIncome(Income income){

@@ -111,17 +111,18 @@ public class AddIncomeActivity extends AppCompatActivity {
                 addIncomeDetail(5,dauTu, idIncome, soTien);
                 addIncomeDetail(6,thienTam, idIncome, soTien);
                 // Update Jar Detail
-                JarDetail jarDetail = new JarDetail(null,idCurrentUserLogin,1,soTien*thietYeu/100,null);
+
+                JarDetail jarDetail = new JarDetail(null,idCurrentUserLogin,1, db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,1,null,null)).getMoney()+soTien*thietYeu/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,2,soTien*giaoDuc/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,2,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,2,null,null)).getMoney()+soTien*giaoDuc/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,3,soTien*tietKiem/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,3,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,3,null,null)).getMoney()+soTien*tietKiem/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,4,soTien*huongThu/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,4,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,4,null,null)).getMoney()+soTien*huongThu/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,5,soTien*dauTu/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,5,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,5,null,null)).getMoney()+soTien*dauTu/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,6,soTien*thienTam/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,6,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,6,null,null)).getMoney()+soTien*thienTam/100,null);
                 db.updateJarDetail(jarDetail);
                 finish();
             }
