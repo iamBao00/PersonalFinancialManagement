@@ -65,6 +65,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvSoDuHu1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.200.000 đ"
@@ -137,15 +138,17 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvSoDuHu2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.200.000 đ"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="15dp"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginRight="50dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="15dp"
+                android:text="1.200.000 đ"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
             <TextView
 
                 android:layout_width="wrap_content"
@@ -210,15 +213,16 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvSoDuHu3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.200.000 đ"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="15dp"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginRight="50dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="15dp"
+                android:text="1.200.000 đ"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -282,6 +286,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvSoDuHu4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.200.000 đ"
@@ -356,13 +361,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.200.000 đ"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="15dp"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginRight="50dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="15dp"
+                android:id="@+id/tvSoDuHu5"
+                android:text="1.200.000 đ"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -426,6 +432,7 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvSoDuHu6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.200.000 đ"

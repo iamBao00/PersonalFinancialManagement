@@ -34,7 +34,7 @@
             android:text="1.900.000 đ"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="20dp"
-            android:id="@+id/tvPaymentMoney1"/>
+            android:id="@+id/tvTongThuNhap"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,16 +67,18 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="25dp"
             android:id="@+id/tvPaymentIcon2"/>
+
         <TextView
+            android:id="@+id/tvTongChiTieu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:text="0 đ"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="20dp"
-            android:id="@+id/tvPaymentMoney2"/>
+            android:text="0 đ"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -3,7 +3,6 @@ package com.example.moneymanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,11 +17,9 @@ import com.example.moneymanager.Model.Income;
 import com.example.moneymanager.Model.IncomeDetail;
 import com.example.moneymanager.Model.JarDetail;
 
-import java.sql.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class AddIncomeActivity extends AppCompatActivity {
     private int idCurrentUserLogin;
@@ -104,33 +101,34 @@ public class AddIncomeActivity extends AppCompatActivity {
                 Income income = new Income(null,soTien,moTa,ngayThang);
                 long idIncome = db.addIncome(income);
                 // Them data vao DetailIncome
-                addIncomeDetail(1,thietYeu, idIncome, soTien);
-                addIncomeDetail(2,giaoDuc, idIncome, soTien);
-                addIncomeDetail(3,tietKiem, idIncome, soTien);
-                addIncomeDetail(4,huongThu, idIncome, soTien);
-                addIncomeDetail(5,dauTu, idIncome, soTien);
-                addIncomeDetail(6,thienTam, idIncome, soTien);
+
+                addIncomeDetail(db.getJarDetail(new JarDetail(null,idCurrentUserLogin,1,null,null)).getIdJarDetail(),thietYeu, idIncome, soTien);
+                addIncomeDetail(db.getJarDetail(new JarDetail(null,idCurrentUserLogin,2,null,null)).getIdJarDetail(),giaoDuc, idIncome, soTien);
+                addIncomeDetail(db.getJarDetail(new JarDetail(null,idCurrentUserLogin,3,null,null)).getIdJarDetail(),tietKiem, idIncome, soTien);
+                addIncomeDetail(db.getJarDetail(new JarDetail(null,idCurrentUserLogin,4,null,null)).getIdJarDetail(),huongThu, idIncome, soTien);
+                addIncomeDetail(db.getJarDetail(new JarDetail(null,idCurrentUserLogin,5,null,null)).getIdJarDetail(),dauTu, idIncome, soTien);
+                addIncomeDetail(db.getJarDetail(new JarDetail(null,idCurrentUserLogin,6,null,null)).getIdJarDetail(),thienTam, idIncome, soTien);
                 // Update Jar Detail
 
-                JarDetail jarDetail = new JarDetail(null,idCurrentUserLogin,1, db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,1,null,null)).getMoney()+soTien*thietYeu/100,null);
+                JarDetail jarDetail = new JarDetail(null,idCurrentUserLogin,1, db.getJarDetail(new JarDetail(null,idCurrentUserLogin,1,null,null)).getMoney()+soTien*thietYeu/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,2,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,2,null,null)).getMoney()+soTien*giaoDuc/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,2,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,2,null,null)).getMoney()+soTien*giaoDuc/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,3,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,3,null,null)).getMoney()+soTien*tietKiem/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,3,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,3,null,null)).getMoney()+soTien*tietKiem/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,4,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,4,null,null)).getMoney()+soTien*huongThu/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,4,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,4,null,null)).getMoney()+soTien*huongThu/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,5,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,5,null,null)).getMoney()+soTien*dauTu/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,5,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,5,null,null)).getMoney()+soTien*dauTu/100,null);
                 db.updateJarDetail(jarDetail);
-                jarDetail = new JarDetail(null,idCurrentUserLogin,6,db.getMoneyInJarDetail(new JarDetail(null,idCurrentUserLogin,6,null,null)).getMoney()+soTien*thienTam/100,null);
+                jarDetail = new JarDetail(null,idCurrentUserLogin,6,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,6,null,null)).getMoney()+soTien*thienTam/100,null);
                 db.updateJarDetail(jarDetail);
                 finish();
             }
         });
     }
-    private void addIncomeDetail(int idJar, int coCau, long idInCome, long soTien){
+    private void addIncomeDetail(int idJarDetail, int coCau, long idInCome, long soTien){
         if(coCau != 0) {
-            IncomeDetail incomeDetail = new IncomeDetail(idJar,Integer.parseInt(String.valueOf(idInCome)),coCau,soTien*coCau/100);
+            IncomeDetail incomeDetail = new IncomeDetail(idJarDetail,Integer.parseInt(String.valueOf(idInCome)),coCau,soTien*coCau/100);
             db.addDetailMoney(incomeDetail);
         }
     }

@@ -120,7 +120,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return result;
         }
     }
-    public JarDetail getMoneyInJarDetail(JarDetail jarDetail) {
+
+    public Integer getIdJarDetail(JarDetail jarDetail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] selectionArgs = {String.valueOf(jarDetail.getIdJar()), String.valueOf(jarDetail.getIdUser())};
+        Cursor cursor = db.rawQuery("SELECT id_jar_detail FROM jar_detail WHERE id_jar = ? AND id_user = ?", selectionArgs);
+
+        Integer idJarDetail = null; // Khởi tạo giá trị mặc định là null
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Lấy id_jar_detail từ hàng đầu tiên (nếu tồn tại)
+            idJarDetail = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar_detail"));
+        }
+
+        // Đóng con trỏ và cơ sở dữ liệu
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return idJarDetail;
+    }
+
+    public JarDetail getJarDetail(JarDetail jarDetail) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = {
@@ -143,15 +165,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null,
                 null
         );
-        JarDetail jarDetail2 = new JarDetail();
-        // Duyệt qua các hàng của kết quả và thêm chúng vào danh sách
+
+        JarDetail jarDetailResult = null;
+
         if (cursor != null && cursor.moveToFirst()) {
+            // Lấy giá trị từ con trỏ và tạo đối tượng JarDetail
             int idJarDetail = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar_detail"));
             int idUser = cursor.getInt(cursor.getColumnIndexOrThrow("id_user"));
             int idJar = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar"));
             long money = cursor.getLong(cursor.getColumnIndexOrThrow("money"));
             String date_update = cursor.getString(cursor.getColumnIndexOrThrow("date_update"));
-            jarDetail2 =  new JarDetail(idJarDetail, idUser,idJar, money,date_update);
+            jarDetailResult = new JarDetail(idJarDetail, idUser, idJar, money, date_update);
         }
 
         // Đóng con trỏ và kết nối cơ sở dữ liệu
@@ -160,7 +184,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
 
-        return jarDetail2;
+        return jarDetailResult;
+    }
+
+    // idJarDetail = (idCurrentUserLogin, idJar), hàm này sẽ trả về tổng thu nhập của CurrentUserLogin ở hủ Jar(jdJar) => chạy 6 lần cộng 6 hủ để tính thu nhập
+    public long getSumDetailMoneyInDetailIncomeByIdJarDetail(Integer idJarDetail){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                "detail_money"
+        };
+        String selection = "id_jar_detail = ?";
+        String[] selectionArgs = {String.valueOf(idJarDetail)};
+        Cursor cursor = db.query(
+                "detail_income",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        long sum = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long detailMoney = cursor.getInt(cursor.getColumnIndexOrThrow("detail_money"));
+                sum += detailMoney;
+            } while (cursor.moveToNext());
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+        return sum;
     }
 
     public long addIncome(Income income){
@@ -180,7 +236,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("id_jar", incomeDetail.getIdJarDetail());
+        values.put("id_jar_detail", incomeDetail.getIdJarDetail());
         values.put("id_income", incomeDetail.getIdIncome());
         values.put("co_cau", incomeDetail.getCo_cau());
         values.put("detail_money", incomeDetail.getDetailMoney());

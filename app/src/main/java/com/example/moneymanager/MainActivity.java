@@ -8,15 +8,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import com.example.moneymanager.Model.JarDetail;
 import com.example.moneymanager.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private int idCurrentLoginUser = 3;
+    private int idCurrentLoginUser = 1;
 
     ActivityMainBinding bingding;
     Toolbar tooltopbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
+
         setSupportActionBar(tooltopbar);
+
     }
 
     private void setControl() {
