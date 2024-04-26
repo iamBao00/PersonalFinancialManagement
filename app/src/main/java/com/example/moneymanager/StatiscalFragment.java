@@ -16,14 +16,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link StatiscalFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class StatiscalFragment extends Fragment implements MenuProvider {
 
-public class PersionFragment extends Fragment implements MenuProvider {
 
 
-    public PersionFragment() {
+
+
+    public StatiscalFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -36,12 +42,12 @@ public class PersionFragment extends Fragment implements MenuProvider {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_persion, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_statiscal, container, false);
+
         MenuHost menuHost = requireActivity();
         menuHost.addMenuProvider(this, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
         return  rootView;
-
     }
 
     private void replaceFracment(Fragment fragment)

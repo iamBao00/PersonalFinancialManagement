@@ -4,6 +4,7 @@
     >
     <item
         android:title="Statiscal"
+        android:visible="true"
         android:icon="@drawable/chart_icon1"
         app:showAsAction="ifRoom"
         android:id="@+id/iconStatis"/>
@@ -12,5 +13,7 @@
         android:title="Notify"
         android:icon="@drawable/notify_icon"
         app:showAsAction="ifRoom"
+        android:visible="true"
+
         android:id="@+id/iconNotify"/>
 </menu>

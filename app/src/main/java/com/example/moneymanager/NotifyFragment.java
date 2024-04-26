@@ -17,31 +17,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class PersionFragment extends Fragment implements MenuProvider {
+public class NotifyFragment extends Fragment implements MenuProvider {
 
 
-    public PersionFragment() {
+
+    public NotifyFragment() {
         // Required empty public constructor
     }
 
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_persion, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_notify, container, false);
+
         MenuHost menuHost = requireActivity();
         menuHost.addMenuProvider(this, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
         return  rootView;
-
     }
 
     private void replaceFracment(Fragment fragment)
