@@ -8,10 +8,23 @@
     android:theme="@style/ThemeOverlay.AppCompat.Light"
     android:background="@color/colorPrimary">
 
-    <include layout="@layout/top_bar_layout"
-        android:id="@+id/tool_top_bar"
-        />
+<!--    <include layout="@layout/top_bar_layout"-->
+<!--        android:id="@+id/tool_top_bar"-->
+<!--        />-->
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorToolBar"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/main_top_bar"
+        app:subtitle="Huỳnh Gia Hưng"
+        app:title="Xin chào!"
+        android:id="@+id/tool_top_bar">
 
+
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/frame_layout"
