@@ -20,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
     int idCurrentLoginUser;
 
 
-
-
-
-
     ActivityMainBinding bingding;
     Toolbar tooltopbar;
 

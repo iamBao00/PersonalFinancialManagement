@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.moneymanager.Model.Income;
 import com.example.moneymanager.Model.IncomeDetail;
 import com.example.moneymanager.Model.JarDetail;
+import com.example.moneymanager.Model.Spending;
 import com.example.moneymanager.Model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -220,6 +221,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sum;
     }
 
+    public long getTotalSpending(Integer idJarDetail) {
+//        long totalSpending = 0;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        String selectQuery = "SELECT money FROM spending WHERE id_jardetail = ?";
+//        String[] selectionArgs = {String.valueOf(idJarDetail)};
+//        Cursor cursor = db.rawQuery(selectQuery, selectionArgs);
+//        if (cursor.moveToFirst()) {
+//            long detailMoney = cursor.getLong(cursor.getColumnIndexOrThrow("money"));
+//            totalSpending += detailMoney;
+//        }
+//        cursor.close();
+//        return totalSpending;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                "money"
+        };
+        String selection = "id_jardetail = ?";
+        String[] selectionArgs = {String.valueOf(idJarDetail)};
+        Cursor cursor = db.query(
+                "spending",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        long sum = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long detailMoney = cursor.getInt(cursor.getColumnIndexOrThrow("money"));
+                sum += detailMoney;
+            } while (cursor.moveToNext());
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+        return sum;
+    }
+
     public long addIncome(Income income){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -264,6 +309,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d("Database", "No rows updated in detail_income table");
         }
         db.close(); // Đóng kết nối cơ sở dữ liệu
+    }
+
+    public long addSpending(Spending spending){
+//        String createSpending = "CREATE TABLE IF NOT EXISTS \"spending\" (\n" +
+//                "\t\"id_spending\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+//                "\t\"id_jardetail\"\tINTEGER NOT NULL,\n" +
+//                "\t\"money\"\tMONEY DEFAULT 0,\n" +
+//                "\t\"description\"\tTEXT,\n" +
+//                "\t\"date\"\tDATE DEFAULT CURRENT_DATE,\n" +
+//                "\tFOREIGN KEY(\"id_jardetail\") REFERENCES \"jar_detail\"(\"id_jardetail\")\n" +
+//                ");";
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id_jardetail", spending.getIdJarDetail());
+        values.put("money", spending.getMoney());
+        values.put("description", spending.getDescription());
+        values.put("date", spending.getDate());
+
+        long id = db.insert("spending", null, values);
+        db.close();
+        return id;
     }
 
     public Boolean checkEmail(String email){

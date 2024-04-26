@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,10 +38,11 @@ public class HomeFragment extends Fragment {
     Context context = getActivity();
     DatabaseHelper db;
 
-    int idCurrentLoginUser =1 ;
+    int idCurrentLoginUser;
 
 
     TextView tvTongThuNhap, tvTongChiTieu, tvSoDuHu1, tvSoDuHu2, tvSoDuHu3, tvSoDuHu4, tvSoDuHu5, tvSoDuHu6, tvSoDu;
+    FrameLayout frChiTieu;
     View xml_payment;
     long tongThuNhap, tongChiTieu = 0;
 
@@ -53,11 +55,15 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         tongThuNhap = 0;
+        tongChiTieu = 0;
         for(int i = 1; i<= 6; i++){
             tongThuNhap += db.getSumDetailMoneyInDetailIncomeByIdJarDetail(db.getJarDetail(new JarDetail(null, idCurrentLoginUser,i,null, null)).getIdJarDetail());
         }
         tvTongThuNhap.setText(String.valueOf(tongThuNhap));
-
+        for (int i = 1; i <= 6; i++) {
+            tongChiTieu += db.getTotalSpending(db.getIdJarDetail(new JarDetail(null, idCurrentLoginUser,i,null, null)));
+        }
+//        tongChiTieu = db.getTotalSpending(12);
         // tvSoDuHu1.setText(String.valueOf(db.getJarDetail(new JarDetail(null,idCurrentLoginUser,1,null,null)).getMoney()));
         tvSoDuHu1.setText(String.valueOf(db.getJarDetail(new JarDetail(null,idCurrentLoginUser,1,null,null)).getMoney()));
         tvSoDuHu2.setText(db.getJarDetail(new JarDetail(null,idCurrentLoginUser,2,null,null)).getMoney().toString());
@@ -66,6 +72,7 @@ public class HomeFragment extends Fragment {
         tvSoDuHu5.setText(db.getJarDetail(new JarDetail(null,idCurrentLoginUser,5,null,null)).getMoney().toString());
         tvSoDuHu6.setText(db.getJarDetail(new JarDetail(null,idCurrentLoginUser,6,null,null)).getMoney().toString());
 
+        tvTongChiTieu.setText(String.valueOf(tongChiTieu));
         tvTongChiTieu.setText(String.valueOf(tongChiTieu));
         tvSoDu.setText(String.valueOf(tongThuNhap-tongChiTieu));
     }
@@ -137,15 +144,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void setEvent() {
-//        frKhoanNo.(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Context context = getActivity();
-//                    Intent intent = new Intent(context, SpendingActivity.class);
-//                    startActivity(intent);
-//                }
-//            });
-
+        frChiTieu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = getActivity();
+                    Intent intent = new Intent(context, SpendingActivity.class);
+                    startActivity(intent);
+                }
+            });
     }
 
 
@@ -159,6 +165,8 @@ public class HomeFragment extends Fragment {
         tvSoDuHu5 =  rootView.findViewById(R.id.tvSoDuHu5);
         tvSoDuHu6 =  rootView.findViewById(R.id.tvSoDuHu6);
         tvSoDu = rootView.findViewById(R.id.tvSoDu);
+        frChiTieu = rootView.findViewById(R.id.frChiTieu);
+
         xml_payment = rootView.findViewById(R.id.xml_payment);
     }
 }

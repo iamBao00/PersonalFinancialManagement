@@ -35,21 +35,22 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="20dp"
             android:id="@+id/tvTongThuNhap"/>
+
         <TextView
+            android:id="@+id/tvNamePayment1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tài sản"
-            android:textColor="@color/white"
-            android:layout_marginTop="13dp"
             android:layout_marginLeft="80dp"
-            android:textSize="18dp"
-            android:id="@+id/tvNamePayment1"/>
+            android:layout_marginTop="13dp"
+            android:text="Thu Nhập"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
     </FrameLayout>
 
 
     <FrameLayout
-        android:id="@+id/frKhoanNo"
+        android:id="@+id/frChiTieu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -81,14 +82,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvNamePayment2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Khoản nợ"
-            android:textColor="@color/white"
-            android:layout_marginTop="13dp"
             android:layout_marginLeft="80dp"
-            android:textSize="18dp"
-            android:id="@+id/tvNamePayment2"/>
+            android:layout_marginTop="13dp"
+            android:text="Chi Tiêu"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
     </FrameLayout>
 
