@@ -1,4 +1,4 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import android.os.Bundle;
 

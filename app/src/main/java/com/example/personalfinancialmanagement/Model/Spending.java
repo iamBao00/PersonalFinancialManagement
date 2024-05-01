@@ -1,4 +1,4 @@
-package com.example.moneymanager.Model;
+package com.example.personalfinancialmanagement.Model;
 
 public class Spending {
     private Integer idSpending;

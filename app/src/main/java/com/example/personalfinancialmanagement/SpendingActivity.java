@@ -1,9 +1,7 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,8 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.moneymanager.Model.JarDetail;
-import com.example.moneymanager.Model.Spending;
+import com.example.personalfinancialmanagement.Model.JarDetail;
+import com.example.personalfinancialmanagement.Model.Spending;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

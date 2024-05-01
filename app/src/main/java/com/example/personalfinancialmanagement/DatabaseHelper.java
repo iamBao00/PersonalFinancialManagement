@@ -1,24 +1,19 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.moneymanager.Model.Income;
-import com.example.moneymanager.Model.IncomeDetail;
-import com.example.moneymanager.Model.Jar;
-import com.example.moneymanager.Model.JarDetail;
-import com.example.moneymanager.Model.Spending;
-import com.example.moneymanager.Model.User;
+import com.example.personalfinancialmanagement.Model.Income;
+import com.example.personalfinancialmanagement.Model.IncomeDetail;
+import com.example.personalfinancialmanagement.Model.JarDetail;
+import com.example.personalfinancialmanagement.Model.Spending;
+import com.example.personalfinancialmanagement.Model.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

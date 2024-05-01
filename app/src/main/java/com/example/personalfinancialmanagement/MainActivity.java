@@ -1,4 +1,4 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,12 +10,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.moneymanager.Model.JarDetail;
-import com.example.moneymanager.Model.User;
-import com.example.moneymanager.databinding.ActivityMainBinding;
+import com.example.personalfinancialmanagement.Model.User;
+import com.example.personalfinancialmanagement.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     int idCurrentLoginUser;

@@ -1,18 +1,11 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Lifecycle;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 

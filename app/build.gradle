@@ -3,11 +3,14 @@ plugins {
 }
 
 android {
-    namespace 'com.example.moneymanager'
+    namespace 'com.example.personalfinancialmanagement'
     compileSdk 34
+    dataBinding{
+        enabled=true
+    }
 
     defaultConfig {
-        applicationId "com.example.moneymanager"
+        applicationId "com.example.personalfinancialmanagement"
         minSdk 24
         targetSdk 34
         versionCode 1

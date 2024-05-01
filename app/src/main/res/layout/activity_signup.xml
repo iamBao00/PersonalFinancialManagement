@@ -157,7 +157,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:padding="8dp"
-            android:text="Bạn chưa có tài khoản? Đăng kí"
+            android:text="Đăng nhập bằng tài khoản!"
             android:textColor="@color/white"
             android:textSize="12sp" />
 </LinearLayout>

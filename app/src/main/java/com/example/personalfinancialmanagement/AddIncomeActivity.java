@@ -1,4 +1,4 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.moneymanager.Model.Income;
-import com.example.moneymanager.Model.IncomeDetail;
-import com.example.moneymanager.Model.JarDetail;
+import com.example.personalfinancialmanagement.Model.Income;
+import com.example.personalfinancialmanagement.Model.IncomeDetail;
+import com.example.personalfinancialmanagement.Model.JarDetail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

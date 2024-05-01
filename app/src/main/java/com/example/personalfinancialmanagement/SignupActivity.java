@@ -1,4 +1,4 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.moneymanager.databinding.ActivitySignupBinding;
-import com.example.moneymanager.DatabaseHelper;
+import com.example.personalfinancialmanagement.databinding.ActivitySignupBinding;
+
 public class SignupActivity extends AppCompatActivity {
     ActivitySignupBinding binding;
     DatabaseHelper db;

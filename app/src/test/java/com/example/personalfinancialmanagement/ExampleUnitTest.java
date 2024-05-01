@@ -1,4 +1,4 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import org.junit.Test;
 

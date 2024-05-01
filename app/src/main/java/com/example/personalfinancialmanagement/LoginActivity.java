@@ -1,4 +1,4 @@
-package com.example.moneymanager;
+package com.example.personalfinancialmanagement;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.moneymanager.databinding.ActivityLoginBinding;
+import com.example.personalfinancialmanagement.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
