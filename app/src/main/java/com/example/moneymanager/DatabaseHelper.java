@@ -2,6 +2,7 @@ package com.example.moneymanager;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,9 +10,15 @@ import android.util.Log;
 
 import com.example.moneymanager.Model.Income;
 import com.example.moneymanager.Model.IncomeDetail;
+import com.example.moneymanager.Model.Jar;
 import com.example.moneymanager.Model.JarDetail;
 import com.example.moneymanager.Model.Spending;
 import com.example.moneymanager.Model.User;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -123,6 +130,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public ArrayList<String> getListNameOfJar(int idUser)
+    {
+        ArrayList<String> listJar = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Jar ORDER BY id_jar", null);
+        c.moveToFirst();
+        while (!c.isAfterLast())
+        {
+            String jar_name = c.getString(1);
+            listJar.add(jar_name);
+            c.moveToNext();
+        }
+        db.close();
+        return listJar;
+    }
+
+    public ArrayList<Integer> getMoneyOfJar(int idUser) {
+        ArrayList<Integer> moneys = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM jar_detail WHERE id_user = ? ORDER BY id_jar", new String[]{String.valueOf(idUser)});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            int money = c.getInt(3);
+            moneys.add(money);
+            c.moveToNext();
+        }
+        db.close();
+        return moneys;
+    }
+
     public Integer getIdJarDetail(JarDetail jarDetail) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] selectionArgs = {String.valueOf(jarDetail.getIdJar()), String.valueOf(jarDetail.getIdUser())};
@@ -188,6 +225,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return jarDetailResult;
     }
+
+    //get jarDetail include idJar, jar_name , money by idUser
+
 
     // idJarDetail = (idCurrentUserLogin, idJar), hàm này sẽ trả về tổng thu nhập của CurrentUserLogin ở hủ Jar(jdJar) => chạy 6 lần cộng 6 hủ để tính thu nhập
     public long getSumDetailMoneyInDetailIncomeByIdJarDetail(Integer idJarDetail){

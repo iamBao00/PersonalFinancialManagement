@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class NotifyFragment extends Fragment implements MenuProvider {
+public class NotifyFragment extends Fragment  {
 
 
 
@@ -33,8 +33,6 @@ public class NotifyFragment extends Fragment implements MenuProvider {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_notify, container, false);
 
-        MenuHost menuHost = requireActivity();
-        menuHost.addMenuProvider(this, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
         return  rootView;
     }
@@ -49,23 +47,4 @@ public class NotifyFragment extends Fragment implements MenuProvider {
     }
 
 
-    @Override
-    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.main_top_bar,menu);
-
-    }
-
-    @Override
-    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId())
-        {
-            case R.id.iconStatis:
-                replaceFracment(new StatiscalFragment());
-                break;
-            case R.id.iconNotify:
-                replaceFracment(new NotifyFragment());
-                break;
-        }
-        return true;
-    }
 }

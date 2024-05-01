@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StatiscalFragment"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        android:textColor="@color/white"
-        android:text="Statiscal Fragment" />
+            <include layout="@layout/show_main_info"
+                android:id="@+id/xml_show_main_info"/>
 
-</FrameLayout>
+            <include layout="@layout/layout_shape_patrimon"
+                android:id="@+id/xml_payment"/>
+
+            <include layout="@layout/layout_report_payment"
+                />
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"    >-->
+<!--                <include layout="@layout/layout_report_payment"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

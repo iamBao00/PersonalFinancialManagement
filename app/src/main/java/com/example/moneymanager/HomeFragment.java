@@ -32,7 +32,7 @@ import com.example.moneymanager.Model.JarDetail;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements MenuProvider {
+public class HomeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -108,8 +108,8 @@ public class HomeFragment extends Fragment implements MenuProvider {
 
         SharedPreferences prefs = context.getSharedPreferences("getIdUser", MODE_PRIVATE);
         idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
-        MenuHost menuHost = requireActivity();
-        menuHost.addMenuProvider(this, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+//        MenuHost menuHost = requireActivity();
+//        menuHost.addMenuProvider(this, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
         setEvent();
 
@@ -159,22 +159,22 @@ public class HomeFragment extends Fragment implements MenuProvider {
         xml_payment = rootView.findViewById(R.id.xml_payment);
     }
 
-    @Override
-    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.main_top_bar,menu);
-    }
-
-    @Override
-    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId())
-        {
-            case R.id.iconStatis:
-                replaceFracment(new StatiscalFragment());
-                break;
-            case R.id.iconNotify:
-                replaceFracment(new NotifyFragment());
-                break;
-        }
-        return true;
-    }
+//    @Override
+//    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+//        menuInflater.inflate(R.menu.main_top_bar,menu);
+//    }
+//
+//    @Override
+//    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+//        switch (menuItem.getItemId())
+//        {
+//            case R.id.iconStatis:
+//                replaceFracment(new StatiscalFragment());
+//                break;
+//            case R.id.iconNotify:
+//                replaceFracment(new NotifyFragment());
+//                break;
+//        }
+//        return true;
+//    }
 }

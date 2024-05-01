@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////
         SharedPreferences prefs = getSharedPreferences("getIdUser", MODE_PRIVATE);
         idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
-        Toast.makeText(this, "idUser" + idCurrentLoginUser, Toast.LENGTH_SHORT).show();
         ////////////////////////////////////////////////////
+        setControl();
+        setEvent();
 
-
+        // get action when click on menu bottom bar
         replaceFracment(new HomeFragment());
 //        bingding.bottomNavagationView.setBackground(null);
         bingding.bottomNavagationView.setOnItemSelectedListener(item -> {
@@ -57,9 +59,21 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        // get action when click on top bar
+        bingding.toolTopBar.setOnMenuItemClickListener(item -> {
 
-        setControl();
-        setEvent();
+            switch (item.getItemId())
+            {
+                case R.id.iconStatis:
+                    replaceFracment(new StatiscalFragment());
+                    break;
+                case R.id.iconNotify:
+                    replaceFracment(new NotifyFragment());
+                    break;
+            }
+            return true;
+        });
+
     }
 
     private void replaceFracment(Fragment fragment)
@@ -76,7 +90,18 @@ public class MainActivity extends AppCompatActivity {
         //set name toolbar
         setNameToolBar();
 
+
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_top_bar, menu);
+
+        return  true;
+    }
+
+
 
     private void setNameToolBar() {
         User user = new User();
