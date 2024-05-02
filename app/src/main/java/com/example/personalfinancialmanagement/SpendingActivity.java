@@ -70,12 +70,12 @@ public class SpendingActivity extends AppCompatActivity {
 
     private void setEvent() {
         List<String> huuList = new ArrayList<>();
-        huuList.add("Chi tiêu cần thiết");
-        huuList.add("Tiết kiệm dài hạn");
-        huuList.add("Quỹ giáo dục");
-        huuList.add("Hưởng thụ");
-        huuList.add("Quỹ tự do tài chính");
-        huuList.add("Quỹ từ thiện");
+        huuList.add("Thiết Yếu");
+        huuList.add("Giáo Dục");
+        huuList.add("Tiết Kiệm");
+        huuList.add("Hưởng Thụ");
+        huuList.add("Đầu Tư");
+        huuList.add("Thiện Tâm");
 
         // Tạo Adapter cho Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, huuList);
@@ -123,17 +123,17 @@ public class SpendingActivity extends AppCompatActivity {
                 String selectedHu = spinnerHuChiTieu.getSelectedItem().toString();
 
                 int idJar = 1;
-                if ("Chi tiêu cần thiết".equals(selectedHu)) {
+                if ("Thiết Yếu".equals(selectedHu)) {
                     idJar = 1;
-                } else if ("Tiết kiệm dài hạn".equals(selectedHu)) {
+                } else if ("Giáo Dục".equals(selectedHu)) {
                     idJar = 2;
-                } else if ("Quỹ giáo dục".equals(selectedHu)) {
+                } else if ("Tiết Kiệm".equals(selectedHu)) {
                     idJar = 3;
-                } else if ("Hưởng thụ".equals(selectedHu)) {
+                } else if ("Hưởng Thụ".equals(selectedHu)) {
                     idJar = 4;
-                } else if ("Quỹ tự do tài chính".equals(selectedHu)) {
+                } else if ("Đầu Tư".equals(selectedHu)) {
                     idJar = 5;
-                } else if ("Quỹ từ thiện".equals(selectedHu)) {
+                } else if ("Thiện Tâm".equals(selectedHu)) {
                     idJar = 6;
                 }
 //                Log.d("1", String.valueOf(idCurrentUserLogin));
@@ -142,7 +142,11 @@ public class SpendingActivity extends AppCompatActivity {
 //                idCurrentUserLogin = 1;
                 int idJardetail = db.getIdJarDetail(new JarDetail(null, idCurrentUserLogin, idJar, null, null));
 
-
+                long soDu = db.getJarDetail(new JarDetail(null, idCurrentUserLogin, idJar, null, null)).getMoney();
+                if(soDu < soTien){
+                    Toast.makeText(SpendingActivity.this, "Số dư hủ không đủ!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Spending spending = new Spending(null, idJardetail, soTien, moTa, ngayThang);
                 long l = db.addSpending(spending);

@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.personalfinancialmanagement.Model.JarDetail;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;
@@ -28,9 +30,26 @@ public class StatiscalFragment extends Fragment {
     DatabaseHelper db ;
     private int idCurrentLoginUser;
     PieChart pieChart;
+    TextView tvSoDu, tvTongThuNhap, tvTongChiTieu;
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        long tongThuNhap = 0;
+        long tongChiTieu = 0;
+        for(int i = 1; i<= 6; i++){
+            tongThuNhap += db.getSumDetailMoneyInDetailIncomeByIdJarDetail(db.getJarDetail(new JarDetail(null, idCurrentLoginUser,i,null, null)).getIdJarDetail());
+        }
+        tvTongThuNhap.setText(String.valueOf(tongThuNhap));
+        for (int i = 1; i <= 6; i++) {
+            tongChiTieu += db.getTotalSpending(db.getIdJarDetail(new JarDetail(null, idCurrentLoginUser,i,null, null)));
+        }
 
+        tvTongChiTieu.setText(String.valueOf(tongChiTieu));
+        tvTongChiTieu.setText(String.valueOf(tongChiTieu));
+        tvSoDu.setText(String.valueOf(tongThuNhap-tongChiTieu));
+    }
 
     public StatiscalFragment() {
         // Required empty public constructor
@@ -120,6 +139,9 @@ public class StatiscalFragment extends Fragment {
         idCurrentLoginUser = prefs.getInt("idUserCurrent", -1);
         //get Database
         db = new DatabaseHelper(rootView.getContext());
+        tvSoDu = rootView.findViewById(R.id.tvSoDu);
+        tvTongChiTieu = rootView.findViewById(R.id.tvTongChiTieu);
+        tvTongThuNhap = rootView.findViewById(R.id.tvTongThuNhap);
         pieChart = rootView.findViewById(R.id.pieChart);
 
     }
