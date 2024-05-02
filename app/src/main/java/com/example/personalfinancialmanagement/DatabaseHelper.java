@@ -14,7 +14,9 @@ import com.example.personalfinancialmanagement.Model.Spending;
 import com.example.personalfinancialmanagement.Model.User;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -126,6 +128,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<IncomeDetail> getIncomeDetailByIdIncome(int id) {
+
+        List<IncomeDetail> listCT = new ArrayList<>();
+        String selectQuery = "";
+        // Select All Query
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        selectQuery = "SELECT  * FROM detail_income where detail_income.id_income = " + id;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                IncomeDetail CT = new IncomeDetail();
+                CT.setIdJarDetail(Integer.parseInt(cursor.getString(0)));
+                CT.setIdIncome(Integer.parseInt(cursor.getString(1)));
+                CT.setCo_cau(Integer.parseInt(cursor.getString(2)));
+                CT.setDetailMoney(Long.valueOf(cursor.getString(3)));
+                // Adding contact to list
+                listCT.add(CT);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listCT;
+    }
+
     public ArrayList<String> getListNameOfJar(int idUser)
     {
         ArrayList<String> listJar = new ArrayList<>();
@@ -175,6 +201,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return idJarDetail;
+    }
+
+    public Integer getIdJarByIdJarDetail(Integer idJarDetail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] selectionArgs = {String.valueOf(idJarDetail)};
+        Cursor cursor = db.rawQuery("SELECT id_jar FROM jar_detail WHERE id_jar_detail = ?", selectionArgs);
+
+        Integer idJar = -1;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Lấy id_jar_detail từ hàng đầu tiên (nếu tồn tại)
+            idJar = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar"));
+        }
+
+        // Đóng con trỏ và cơ sở dữ liệu
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return idJar;
     }
 
     public JarDetail getJarDetail(JarDetail jarDetail) {
@@ -352,6 +399,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return listIncome;
+    }
+
+    public List<Integer> getAllIdIncomeByListIdJarDetail(List<Integer> listIdJarDetail) {
+        Set<Integer> listIdIncome = new HashSet<Integer>();
+        String selectQuery = "";
+        // Select All Query
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        for(Integer i:listIdJarDetail){
+            selectQuery = "SELECT  * FROM detail_income WHERE id_jar_detail = ?";
+            String[] selectionArgs = {String.valueOf(i)};
+            Cursor cursor = db.rawQuery(selectQuery, selectionArgs);
+            if (cursor.moveToFirst()) {
+                do {
+                    // Adding contact to list
+                    listIdIncome.add(Integer.parseInt(cursor.getString(1)));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        return new ArrayList<Integer>(listIdIncome);
     }
 
     public void updateJarDetail(JarDetail jarDetail){

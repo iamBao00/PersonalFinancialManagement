@@ -128,7 +128,10 @@ public class HomeFragment extends Fragment {
         frIncome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFracment(new IncomeFragment());
+//                replaceFracment(new IncomeFragment());
+                Context context = getActivity();
+                Intent intent = new Intent(context, HistoryIncome.class);
+                startActivity(intent);
             }
         });
 //       xml_payment.setOnClickListener(new View.OnClickListener() {
