@@ -44,7 +44,7 @@ public class SpendingActivity extends AppCompatActivity {
         });
         SharedPreferences prefs = getSharedPreferences("getIdUser", MODE_PRIVATE);
         idCurrentUserLogin = prefs.getInt("idUserCurrent", -1);
-        Toast.makeText(this, "idUser" + idCurrentUserLogin, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "idUser" + idCurrentUserLogin, Toast.LENGTH_SHORT).show();
 //        Intent myIntent = getIntent();
 //        idCurrentUserLogin =  myIntent.getIntExtra("userId", -1);
 

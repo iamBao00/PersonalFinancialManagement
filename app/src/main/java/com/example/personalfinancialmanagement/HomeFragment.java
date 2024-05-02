@@ -34,12 +34,11 @@ public class HomeFragment extends Fragment {
 
     Context context = getActivity();
     DatabaseHelper db;
-
+    FrameLayout frIncome, frChiTieu;
     int idCurrentLoginUser;
 
 
     TextView tvTongThuNhap, tvTongChiTieu, tvSoDuHu1, tvSoDuHu2, tvSoDuHu3, tvSoDuHu4, tvSoDuHu5, tvSoDuHu6, tvSoDu;
-    FrameLayout frChiTieu;
     View xml_payment;
     long tongThuNhap, tongChiTieu = 0;
 
@@ -120,11 +119,16 @@ public class HomeFragment extends Fragment {
         frChiTieu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Context context = getActivity();
-                    Intent intent = new Intent(context, SpendingActivity.class);
-                    startActivity(intent);
+                   replaceFracment(new SpendingFragment());
                 }
             });
+
+        frIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFracment(new IncomeFragment());
+            }
+        });
 //       xml_payment.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -146,6 +150,7 @@ public class HomeFragment extends Fragment {
         tvSoDuHu6 =  rootView.findViewById(R.id.tvSoDuHu6);
         tvSoDu = rootView.findViewById(R.id.tvSoDu);
         frChiTieu = rootView.findViewById(R.id.frChiTieu);
+        frIncome = rootView.findViewById(R.id.frIncome);
 
         xml_payment = rootView.findViewById(R.id.xml_payment);
     }
