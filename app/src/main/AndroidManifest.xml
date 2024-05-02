@@ -46,7 +46,15 @@
         </activity>
         <activity
             android:name=".SpendingActivity"
-            android:exported="true">
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".HistorySpending"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".SpendingAdapter"
+            android:exported="false">
         </activity>
     </application>
 

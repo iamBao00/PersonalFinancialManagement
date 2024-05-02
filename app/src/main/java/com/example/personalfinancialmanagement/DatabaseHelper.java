@@ -368,6 +368,85 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public ArrayList<Spending> getSpendingByUserId(int userId) {
+        ArrayList<Spending> spendingList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                "id_spending",
+                "id_jardetail",
+                "money",
+                "description",
+                "date"
+        };
+
+        String selection = "id_jardetail IN (SELECT id_jar_detail FROM jar_detail WHERE id_user = ?)";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.query(
+                "spending",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                // Lấy giá trị từ con trỏ và tạo đối tượng Spending
+                int idSpending = cursor.getInt(cursor.getColumnIndexOrThrow("id_spending"));
+                int idJarDetail = cursor.getInt(cursor.getColumnIndexOrThrow("id_jardetail"));
+                Long money = cursor.getLong(cursor.getColumnIndexOrThrow("money"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+
+                Spending spending = new Spending(idSpending, idJarDetail, money, description, date);
+                spendingList.add(spending);
+            } while (cursor.moveToNext());
+        }
+
+        // Đóng con trỏ và kết nối cơ sở dữ liệu
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return spendingList;
+    }
+
+    public int getJarId(int userId, int jarDetailId) {
+        int jarId = -1; // Giá trị mặc định nếu không tìm thấy
+
+        // Lấy tham chiếu đến cơ sở dữ liệu để đọc
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Câu lệnh truy vấn SQL SELECT
+        String query = "SELECT id_jar FROM jar_detail WHERE id_user = ? AND id_jar_detail = ?";
+
+        // Tham số cho câu lệnh SQL
+        String[] selectionArgs = {String.valueOf(userId), String.valueOf(jarDetailId)};
+
+        // Thực thi truy vấn
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        // Kiểm tra xem có kết quả không
+        if (cursor != null && cursor.moveToFirst()) {
+            // Lấy giá trị id_jar từ Cursor
+            jarId = cursor.getInt(cursor.getColumnIndexOrThrow("id_jar"));
+
+            // Đóng Cursor sau khi sử dụng
+            cursor.close();
+        }
+
+        // Đóng cơ sở dữ liệu
+        db.close();
+
+        // Trả về id_jar
+        return jarId;
+    }
+
     public Boolean checkEmail(String email){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         Cursor cursor = MyDatabase.rawQuery("Select * from user where email = ?", new String[]{email});
