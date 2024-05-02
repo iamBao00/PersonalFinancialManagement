@@ -119,7 +119,9 @@ public class HomeFragment extends Fragment {
         frChiTieu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   replaceFracment(new SpendingFragment());
+                    Context context = getActivity();
+                    Intent intent = new Intent(context, HistorySpending.class);
+                    startActivity(intent);
                 }
             });
 
