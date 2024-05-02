@@ -14,6 +14,7 @@ import com.example.personalfinancialmanagement.Model.Spending;
 import com.example.personalfinancialmanagement.Model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -324,6 +325,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.insert("detail_income", null, values);
         db.close(); // Closing database connection
+    }
+
+    public List<Income> getAllIncomeByListIdIncome(List <Integer> listIdIncome) {
+        List<Income> listIncome = new ArrayList<Income>();
+        String selectQuery = "";
+        // Select All Query
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        for(Integer i:listIdIncome){
+            selectQuery = "SELECT  * FROM income WHERE id_income = ?";
+            String[] selectionArgs = {String.valueOf(i)};
+            Cursor cursor = db.rawQuery(selectQuery, selectionArgs);
+            if (cursor.moveToFirst()) {
+                do {
+                    Income income = new Income();
+                    income.setIdIncome(Integer.parseInt(cursor.getString(0)));
+                    income.setTotal_money(Long.valueOf(cursor.getString(1)));
+                    income.setDescription(cursor.getString(2));
+                    income.setDate(cursor.getString(3));
+                    // Adding contact to list
+                    listIncome.add(income);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        return listIncome;
     }
 
     public void updateJarDetail(JarDetail jarDetail){
