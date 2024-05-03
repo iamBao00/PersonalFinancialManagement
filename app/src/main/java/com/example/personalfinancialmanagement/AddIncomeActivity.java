@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.personalfinancialmanagement.Model.Income;
 import com.example.personalfinancialmanagement.Model.IncomeDetail;
 import com.example.personalfinancialmanagement.Model.JarDetail;
+import com.example.personalfinancialmanagement.Model.Notify;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -122,6 +123,10 @@ public class AddIncomeActivity extends AppCompatActivity {
                 db.updateJarDetail(jarDetail);
                 jarDetail = new JarDetail(null,idCurrentUserLogin,6,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,6,null,null)).getMoney()+soTien*thienTam/100,null);
                 db.updateJarDetail(jarDetail);
+
+                String notifyDesc =  "Thêm thành công " + edtSoTien.getText().toString()+ " vnđ và chia vào các lọ theo cơ cấu bạn đã chọn";
+                Notify notify = new Notify(null, idCurrentUserLogin,"Add Income", notifyDesc,0,edtNgayThang.getText().toString()  );
+                db.addNotify(notify);
                 finish();
             }
         });

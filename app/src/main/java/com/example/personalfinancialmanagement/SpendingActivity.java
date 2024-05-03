@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.personalfinancialmanagement.Model.JarDetail;
+import com.example.personalfinancialmanagement.Model.Notify;
 import com.example.personalfinancialmanagement.Model.Spending;
 
 import java.text.ParseException;
@@ -159,6 +160,10 @@ public class SpendingActivity extends AppCompatActivity {
 
                 JarDetail jarDetail = new JarDetail(null,idCurrentUserLogin,idJar, db.getJarDetail(new JarDetail(null,idCurrentUserLogin,idJar,null,null)).getMoney()-soTien,null);
                 db.updateJarDetail(jarDetail);
+
+                String notifyDesc =  "Thêm thành công " + edtSoTienChiTieu.getText().toString()+ " vnđ mà bạn đã chi tiêu! ";
+                Notify notify = new Notify(null, idCurrentUserLogin,"Spending", notifyDesc,0,edtNgayThangChiTieu.getText().toString()  );
+                db.addNotify(notify);
                 finish();
             }
         });

@@ -1,15 +1,20 @@
 package com.example.personalfinancialmanagement;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.personalfinancialmanagement.Model.Income;
 import com.example.personalfinancialmanagement.Model.IncomeDetail;
 import com.example.personalfinancialmanagement.Model.JarDetail;
+import com.example.personalfinancialmanagement.Model.Notify;
 import com.example.personalfinancialmanagement.Model.Spending;
 import com.example.personalfinancialmanagement.Model.User;
 
@@ -73,6 +78,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "    FOREIGN KEY (id_income) REFERENCES income (id_income)\n" +
                 ");";
 
+        String createNotify = "CREATE TABLE notify (\n" +
+                "    id_notify INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    id_user INTEGER,\n" +
+                "    title TEXT,\n" +
+                "    description TEXT,\n" +
+                "    status BIT DEFAULT FALSE,\n" +
+                "    date DATE DEFAULT CURRENT_DATE,\n" +
+                "    FOREIGN KEY (id_user) REFERENCES user (id_user)\n" +
+                ");";
+
+
         String sql1 = "INSERT INTO Jar (jar_name) VALUES ('Thiết Yếu');",
                 sql2 = "INSERT INTO Jar (jar_name) VALUES ('Giáo Dục');",
                 sql3 = "INSERT INTO Jar (jar_name) VALUES ('Tiết Kiệm');",
@@ -85,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createSpending);
         db.execSQL(createIncome);
         db.execSQL(createDetailIncome);
+        db.execSQL(createNotify);
         db.execSQL(sql1);
         db.execSQL(sql2);
         db.execSQL(sql3);
@@ -101,6 +118,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + "spending");
         db.execSQL("DROP TABLE IF EXISTS " + "income");
         db.execSQL("DROP TABLE IF EXISTS " + "detail_income");
+        db.execSQL("DROP TABLE IF EXISTS " + "notify");
+
         // Create tables again
         onCreate(db);
     }
@@ -443,14 +462,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public long addSpending(Spending spending){
-//        String createSpending = "CREATE TABLE IF NOT EXISTS \"spending\" (\n" +
-//                "\t\"id_spending\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-//                "\t\"id_jardetail\"\tINTEGER NOT NULL,\n" +
-//                "\t\"money\"\tMONEY DEFAULT 0,\n" +
-//                "\t\"description\"\tTEXT,\n" +
-//                "\t\"date\"\tDATE DEFAULT CURRENT_DATE,\n" +
-//                "\tFOREIGN KEY(\"id_jardetail\") REFERENCES \"jar_detail\"(\"id_jardetail\")\n" +
-//                ");";
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -602,5 +614,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return u;
+    }
+
+    public void addNotify(Notify notify) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+//        values.put("id_notify", notify.getId_notify());
+        values.put("id_user", notify.getId_user());
+        values.put("title", notify.getTitle());
+        values.put("description", notify.getDescription());
+//        values.put("status", notify.getStatus());
+        values.put("date", notify.getDate());
+        try {
+            db.insertOrThrow("notify", null, values);
+        } catch (SQLException e) {
+            Log.e(TAG, "Error adding notify: " + e.getMessage());
+        } finally {
+            db.close();
+        }
+    }
+
+    public List<Integer> getAllIdNotifyOfUser(int id_user)
+    {
+        List<Integer> idNotifyList = new ArrayList<>();
+        SQLiteDatabase data = this.getReadableDatabase();
+        Cursor c = data.rawQuery("SELECT id_notify FROM notify WHERE id_user = ?", new String[]{String.valueOf(id_user)});
+        c.moveToFirst();
+        do {
+            int idNotify = c.getInt(0);
+            idNotifyList.add(idNotify);
+
+        }while (!c.isAfterLast() && c.moveToNext());
+
+        c.close();
+        return idNotifyList;
+    }
+
+
+    public Notify getNotify(int id_notify)
+    {
+        SQLiteDatabase data = this.getReadableDatabase() ;
+        Notify notify = new Notify();
+        Cursor c = data.rawQuery("SELECT * FROM notify WHERE id_notify = ?", new String[]{String.valueOf(id_notify)});
+        c.moveToFirst();
+        do {
+            notify.setId_notify(c.getInt(c.getColumnIndexOrThrow("id_notify")));
+            notify.setId_user(c.getInt(c.getColumnIndexOrThrow("id_user")));
+            notify.setTitle(c.getString(c.getColumnIndexOrThrow("title")));
+            notify.setDescription(c.getString(c.getColumnIndexOrThrow("description")));
+            notify.setStatus(c.getInt(c.getColumnIndexOrThrow("status")));
+            notify.setDate(c.getString(c.getColumnIndexOrThrow("date")));
+        }while (!c.isAfterLast() && c.moveToNext());
+
+
+        return notify;
+    }
+
+    public void setReadNotifyStatus(int id_notify)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", 1);
+        db.update("notify", values, "id_notify = ?", new String[] { String.valueOf(id_notify) });
+        db.close();
+    }
+
+    public void setUnreadNotifyStatus(int id_notify)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", 0);
+        db.update("notify", values, "id_notify = ?", new String[] { String.valueOf(id_notify) });
+        db.close();
     }
 }
