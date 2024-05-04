@@ -56,29 +56,9 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Email"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:padding="2dp"
-            android:text="Tên đăng nhập:"
-            android:textColor="@color/white" />
-        <EditText
-            android:paddingLeft="20dp"
-
-            android:id="@+id/edtUserName"
-            android:layout_width="350dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="@string/tendangnhap"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 

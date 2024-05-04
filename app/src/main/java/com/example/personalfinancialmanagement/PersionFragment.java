@@ -25,7 +25,7 @@ import com.example.personalfinancialmanagement.Model.User;
 
 
 public class PersionFragment extends Fragment implements MenuProvider {
-    EditText edtFullname, edtEmail, edtUsername;
+    EditText edtFullname, edtEmail;
     Button btnLuu;
     int idCurrentLoginUser;
     DatabaseHelper db;
@@ -53,7 +53,6 @@ public class PersionFragment extends Fragment implements MenuProvider {
         // Set control
         edtFullname = rootView.findViewById(R.id.edtFullname);
         edtEmail = rootView.findViewById(R.id.edtEmail);
-        edtUsername = rootView.findViewById(R.id.edtUserName);
         btnLuu = rootView.findViewById(R.id.btnLuu);
 
         SharedPreferences prefs = getActivity().getSharedPreferences("getIdUser", MODE_PRIVATE);
@@ -62,7 +61,6 @@ public class PersionFragment extends Fragment implements MenuProvider {
         db = new DatabaseHelper(getContext());
 
         User user = db.getUserByID(idCurrentLoginUser);
-        edtUsername.setText(user.getUsername());
         edtFullname.setText(user.getFullname());
         edtEmail.setText(user.getEmail());
 
@@ -71,7 +69,6 @@ public class PersionFragment extends Fragment implements MenuProvider {
             public void onClick(View v) {
                 user.setFullname(edtFullname.getText().toString());
                 user.setEmail(edtEmail.getText().toString());
-                user.setUsername(edtUsername.getText().toString());
                 db.updateUser(user);
                 replaceFracment(new HomeFragment());
             }
