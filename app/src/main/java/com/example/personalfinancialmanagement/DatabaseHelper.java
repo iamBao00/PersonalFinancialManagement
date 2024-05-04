@@ -110,6 +110,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(sql6);
     }
 
+    public User getUserByID(int userID) {
+        User user = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("user", new String[]{"id_user", "username", "password", "email", "fullname"},
+                "id_user" + "=?", new String[]{String.valueOf(userID)}, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            user = new User(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+            );
+            cursor.close();
+        }
+        db.close();
+        return user;
+    }
+
+    public boolean updateUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("username", user.getUsername());
+        values.put("password", user.getPassword());
+        values.put("email", user.getEmail());
+        values.put("fullname", user.getFullname());
+
+        // Updating row
+        int rowsAffected = db.update("user", values, "id_user" + " = ?", new String[]{String.valueOf(user.getId_user())});
+        db.close();
+
+        return rowsAffected > 0;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + "user");
