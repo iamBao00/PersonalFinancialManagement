@@ -28,5 +28,6 @@
         android:text="Ngày cập nhật"
         android:textColor="@color/white"
         android:textSize="12dp"
+        android:id="@+id/tvDateUpdate"
         />
 </LinearLayout>

@@ -124,9 +124,13 @@ public class AddIncomeActivity extends AppCompatActivity {
                 jarDetail = new JarDetail(null,idCurrentUserLogin,6,db.getJarDetail(new JarDetail(null,idCurrentUserLogin,6,null,null)).getMoney()+soTien*thienTam/100,null);
                 db.updateJarDetail(jarDetail);
 
+                //create notify
                 String notifyDesc =  "Thêm thành công " + edtSoTien.getText().toString()+ " vnđ và chia vào các lọ theo cơ cấu bạn đã chọn";
                 Notify notify = new Notify(null, idCurrentUserLogin,"Add Income", notifyDesc,0,edtNgayThang.getText().toString()  );
                 db.addNotify(notify);
+
+
+
                 finish();
             }
         });

@@ -42,21 +42,24 @@ public class NotifyAdaptter extends ArrayAdapter<Notify> {
         return data.size();
     }
 
+    @SuppressLint("ResourceAsColor")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, null);
         TextView tvNotifyTitle = convertView.findViewById(R.id.tvNotifyTitle);
         TextView tvNotifyDesc = convertView.findViewById(R.id.tvNotifyDesc);
+        TextView tvDateUpdate = convertView.findViewById(R.id.tvDateUpdate);
         LinearLayout notifyItem = convertView.findViewById(R.id.notifyItem);
         Notify notify = data.get(position);
         tvNotifyTitle.setText(notify.getTitle());
         tvNotifyDesc.setText(notify.getDescription());
+        tvDateUpdate.setText(notify.getDate());
 
         if(notify.getStatus() == 0  ) {
-            notifyItem.setBackgroundColor(Color.GREEN);
+            notifyItem.setBackgroundColor(Color.GRAY);
         }else if(notify.getStatus() == 1) {
-            notifyItem.setBackgroundColor(Color.RED);
+            notifyItem.setBackgroundColor(R.color.background_color);
 
         }
 
@@ -67,7 +70,7 @@ public class NotifyAdaptter extends ArrayAdapter<Notify> {
 
                 db = new DatabaseHelper(context);
                 db.setReadNotifyStatus(notify.getId_notify());
-                notifyItem.setBackgroundColor(Color.RED);
+                notifyItem.setBackgroundColor(R.color.background_color);
 
             }
 
